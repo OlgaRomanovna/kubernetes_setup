@@ -1,4 +1,3 @@
-
 # Облачный провайдер - Yandex cloud
 terraform {
   required_providers {
@@ -111,8 +110,8 @@ resource "yandex_compute_instance_group" "k8s-masters" {
 
     boot_disk {
       initialize_params {
-        image_id = "fd8vmcue7aajpmeo39kk" # Ubuntu 20.04 LTS
-        size     = 10
+        image_id = "fd816ajpk27itf7a5sa7" # Ubuntu 20.04 LTS
+        size     = 20
         type     = "network-ssd"
       }
     }
@@ -128,7 +127,7 @@ resource "yandex_compute_instance_group" "k8s-masters" {
     }
 
     metadata = {
-      ssh-keys = "ubuntu:${file("/home/ubuntu/.ssh/id_rsa.pub")}"
+      ssh-keys = "ubuntu:${file("/home/ubuntu/.ssh/authorized_keys")}"
     }
     
     network_settings {
@@ -185,8 +184,8 @@ resource "yandex_compute_instance_group" "k8s-workers" {
 
     boot_disk {
       initialize_params {
-        image_id = "fd8vmcue7aajpmeo39kk" # Ubuntu 20.04 LTS
-        size     = 10
+        image_id = "fd816ajpk27itf7a5sa7" # Ubuntu 20.04 LTS
+        size     = 20
         type     = "network-hdd"
       }
     }
@@ -202,7 +201,7 @@ resource "yandex_compute_instance_group" "k8s-workers" {
     }
 
     metadata = {
-      ssh-keys = "ubuntu:${file("/home/ubuntu/.ssh/id_rsa.pub")}"
+      ssh-keys = "ubuntu:${file("/home/ubuntu/.ssh/authorized_keys")}"
     }
     network_settings {
       type = "STANDARD"
@@ -263,7 +262,7 @@ resource "yandex_compute_instance_group" "k8s-workers" {
 #
 #    boot_disk {
 #      initialize_params {
-#        image_id = "fd8vmcue7aajpmeo39kk" # Ubuntu 20.04 LTS
+#        image_id = "fd816ajpk27itf7a5sa7" # Ubuntu 20.04 LTS
 #        size     = 10
 #        type     = "network-hdd"
 #      }
@@ -280,7 +279,7 @@ resource "yandex_compute_instance_group" "k8s-workers" {
 #    }
 #
 #    metadata = {
-#      ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+#      ssh-keys = "ubuntu:${file("~/.ssh/authorized_keys")}"
 #    }
 #    network_settings {
 #      type = "STANDARD"
